@@ -274,3 +274,183 @@ export const test1RouteConfig = createRouteConfig({
     ...errorResponses,
   },
 });
+
+export const test2RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test2',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test3RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test3',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test4RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test4',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test5RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test5',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test6RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test6',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test7RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test7',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test8RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test8',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test9RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test9',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
+
+export const test10RouteConfig = createRouteConfig({
+  method: 'get',
+  path: '/test10',
+  guard: systemGuard,
+  tags: ['organizations'],
+  summary: 'Test',
+  description: 'Test',
+  responses: {
+    200: {
+      description: 'Test',
+      content: {
+        'application/json': {
+          schema: successResponseWithDataSchema(z.string()),
+        },
+      },
+    },
+    ...errorResponses,
+  },
+});
