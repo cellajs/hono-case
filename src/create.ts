@@ -1,11 +1,47 @@
+import { appendFileSync, readFileSync, writeFileSync } from 'fs'
+
+let code = `
 import middlewares from './middlewares';
 import { acceptInviteRouteConfig, checkEmailRouteConfig, resetPasswordCallbackRouteConfig, resetPasswordRouteConfig, sendVerificationEmailRouteConfig, signInRouteConfig, signOutRouteConfig, signUpRouteConfig, verifyEmailRouteConfig } from './modules/auth/routes';
 import { checkSlugRouteConfig, checkTokenRouteConfig, getUploadTokenRouteConfig, inviteRouteConfig, paddleWebhookRouteConfig } from './modules/general/routes';
-import { createOrganizationRouteConfig, deleteOrganizationsRouteConfig, deleteUsersFromOrganizationRouteConfig, getOrganizationByIdOrSlugRouteConfig, getOrganizationsRouteConfig, getUsersByOrganizationIdRouteConfig, test10RouteConfig, test1RouteConfig, test2RouteConfig, test3RouteConfig, test4RouteConfig, test5RouteConfig, test6RouteConfig, test7RouteConfig, test8RouteConfig, test9RouteConfig, updateOrganizationRouteConfig, updateUserInOrganizationRouteConfig } from './modules/organizations/routes';
+import { createOrganizationRouteConfig, deleteOrganizationsRouteConfig, deleteUsersFromOrganizationRouteConfig, getOrganizationByIdOrSlugRouteConfig, getOrganizationsRouteConfig, getUsersByOrganizationIdRouteConfig, updateOrganizationRouteConfig, updateUserInOrganizationRouteConfig } from './modules/organizations/routes';
 import { getPublicCountsRouteConfig } from './modules/public/routes';
 import { deleteUsersRouteConfig, getUserByIdOrSlugRouteConfig, getUserMenuConfig, getUsersConfig, meRouteConfig, updateUserConfig, userSuggestionsConfig } from './modules/users/routes';
 import { CustomHono } from './types/common';
+import { createRouteConfig } from './lib/route-config';
+import { systemGuard } from './middlewares/guard';
+import { z } from '@hono/zod-openapi';
+import {
+    errorResponses,
+    successResponseWithDataSchema,
+  } from './lib/common-responses';
+`;
 
+for (let i = 0; i < 35; i++) {
+    code += `
+    const test${i}RouteConfig = createRouteConfig({
+        method: 'get',
+        path: '/test${i}',
+        guard: systemGuard,
+        tags: ['organizations'],
+        summary: 'Test',
+        description: 'Test',
+        responses: {
+          200: {
+            description: 'Test',
+            content: {
+              'application/json': {
+                schema: successResponseWithDataSchema(z.string()),
+              },
+            },
+          },
+          ...errorResponses,
+        },
+      })
+  `
+}
+
+code += `
 // Set default hook to catch validation errors
 export const app = new CustomHono();
 
@@ -333,95 +369,21 @@ const route = app
       },
     });
   })
-  /*
-   * Test 1 route
-   */
-  .add(test1RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
- * Test 2 route
- */
-  .add(test2RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
- * Test 3 route
- */
-  .add(test3RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
- * Test 4 route
- */
-  .add(test4RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
- * Test 5 route
- */
-  .add(test5RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
-* Test 6 route
-*/
-  .add(test6RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
-* Test 7 route
-*/
-  .add(test7RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
-* Test 8 route
-*/
-  .add(test8RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
-* Test 9 route
-*/
-  .add(test9RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  })
-  /*
-* Test 10 route
-*/
-  .add(test10RouteConfig, async (ctx) => {
-    return ctx.json({
-      success: true,
-      data: '',
-    });
-  });
+`
 
+for (let i = 0; i < 35; i++) {
+    code += `
+    .add(test${i}RouteConfig, async (ctx) => {
+        return ctx.json({
+          success: true,
+          data: '',
+        });
+      })
+  `
+}
+
+code += `
 export type AppRoute = typeof route;
+`
+// const file = readFileSync('./src/server.ts', 'utf-8');
+writeFileSync('./src/index.ts', code)
