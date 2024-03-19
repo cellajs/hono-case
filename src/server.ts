@@ -1,4 +1,3 @@
-import defaultHook from './lib/default-hook';
 import middlewares from './middlewares';
 import authRoutes from './modules/auth';
 import generalRoutes from './modules/general';
@@ -8,9 +7,7 @@ import usersRoutes from './modules/users';
 import { CustomHono } from './types/common';
 
 // Set default hook to catch validation errors
-export const app = new CustomHono({
-  defaultHook,
-});
+export const app = new CustomHono();
 
 // Add global middleware
 app.route('', middlewares);

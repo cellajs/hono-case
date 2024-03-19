@@ -1,14 +1,10 @@
 import { Lucia, type SessionCookieOptions, TimeSpan } from 'lucia';
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
 
-import { sessionsTable } from './schema/sessions';
-import { type UserModel, usersTable } from './schema/users';
-
-// Create Lucia adapter instance
-const adapter = new DrizzlePostgreSQLAdapter({} as any, sessionsTable, usersTable);
+import { type UserModel } from './schema/users';
 
 const sessionCookieOptions: SessionCookieOptions = {
-  name: `-session-v1`,
+  name: `session-v1`,
   expires: true,
 };
 
